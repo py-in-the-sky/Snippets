@@ -1,6 +1,8 @@
 <snippet>
 	<content><![CDATA[
 """
+Breadth-first-search template inspired by Peter Norvig's Design of Computer
+Programs course on Udacity
 See code from Design of Computer Programs
 keys to BFS:
 	- a general template for BFS
