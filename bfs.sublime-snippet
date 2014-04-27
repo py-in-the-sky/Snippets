@@ -1,0 +1,85 @@
+<snippet>
+	<content><![CDATA[
+"""
+See code from Design of Computer Programs
+keys to BFS:
+	- a general template for BFS
+		- queue for min-steps; priority queue for min-cost (e.g., containing
+		  tuples of (running_cost, data))
+		- states in hashable data structures (e.g., tuples instead of lists)
+		- a 'visited' hash set to prevent duplication of work
+			- cache just data in 'visited', not the whole (running_cost, data)
+			  state (the first time you visite data is along the least
+			  expensive path through data)
+	- a domain-specific transition function with heuristics for generating
+	  next states
+	- a domain-specific is_goal? function for checking whether goal is met
+
+BFS uses caching to prevent duplicating paths in a search; memoization uses
+caching to prevent duplicating calculations in a tree aggregation
+"""
+from Queue import $3  # Queue(), PriorityQueue(), or LifoQueue()
+
+
+def already_visited(state, visited):
+	"upack state and check whether it's been visited (in visited)"
+	$5 = state
+	return $6 in visited
+
+
+def make_visited(state, visited):
+	"upack state and add relevant (hashable) portion to visited (visited.add)"
+	${5:- unpack state -} = state
+	visited.add( ${6:- add relevant, hashable element here -} )
+
+
+def get_return_value(state):
+	"upack state and return the value required by the solve api"
+	$5 = state
+	return ${7:- element of state that solve returns -}
+
+
+def is_goal(state, goal):
+	"check whether state meets goal"
+	$5 = state
+	return ${8:- compare state and goal here -}
+
+
+def successors(state):
+	"generate all successor states of state"
+	$5 = state
+	return ${9:- generate successors here -}
+
+
+def solve( ${1:- define api here -} ):
+	# BFS w/ queue
+	start_state = ${2:- define contents of states to be searched -}
+	# PriorityQueue sorts states based on the first element of each state
+	# (more accurately, it sorts them lexicographically)
+	# so if you're implementing a min-cost search, define the first element
+	# of each state to be the running 'cost' of that state
+	queue = ${3:- Queue() for plain BFS; PriorityQueue() for min-cost search; LifoQueue() for DFS -}  # Queue(), PriorityQueue(), or LifoQueue()
+	queue.put( start_state )
+	visited = set()
+
+	while not queue.empty():
+		state = queue.get()
+		make_visited(state, visited)
+
+		if is_goal(state, goal):
+			return get_return_value(state)
+
+		for s in successors(state):
+			if not already_visited(s, visited):
+				queue.put(s)
+
+	return ${4:- define object to be returned on failed search -}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>bfs</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.python</scope>
+	<!-- Optional: Description to show in the menu -->
+	<description>BFS template</description>
+</snippet>

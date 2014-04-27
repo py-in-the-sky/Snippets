@@ -1,0 +1,68 @@
+<snippet>
+	<content><![CDATA[
+### 1) WRITE SOLUTION HERE ###
+##############################
+def solve( $2 ):
+	${0:- start coding solution -}
+##############################
+
+
+def main(fin, fout=None):
+	"""steps:
+	1) read data from fin
+	2) operate on data
+	3) write answers to fout
+
+	Note: fin is read-only and fout allows writing"""
+	## methods for reading from and writing to file objects:
+	## http://docs.python.org/2/tutorial/inputoutput.html#methods-of-file-objects
+
+	T = int(fin.readline().strip())
+	for t in xrange(T):
+
+		### 2) GET PARAMETERS FROM fin HERE AND GET SOLUTION ###
+		########################################################
+		# get and set params for solve api, using fin.readline().strip()
+		${3:- get parameters from 'fin' here -}
+		solution = solve( ${2:- write solver api here -} )
+		########################################################
+
+		if fout is not None:
+			fout.write('Case #{}: {}\n'.format(t+1, solution))
+		else:
+			print 'Case #{}: {}'.format(t+1, solution)
+
+
+if __name__ == '__main__':
+
+	### 3) ADJUST PROBLEM INDEX AND MODE ###
+	########################################
+	problem = '${1:- set problem as A, B, C, or D -}'  # 'A', 'B', 'C', or 'D'
+	mode = 'practice'  # 'practice', 'small', 'large'
+	########################################
+
+	if mode is 'practice':
+		with open(problem+'-practice.in', 'r') as fin:
+			main(fin)
+
+	elif mode is 'small':
+		with open(problem+'-small-attempt0.in', 'r') as fin:
+			with open(problem+'-small.out', 'w') as fout:
+				main(fin, fout)
+
+	elif mode is 'large':
+		with open(problem+'-large.in', 'r') as fin:
+			with open(problem+'-large.out', 'w') as fout:
+				main(fin, fout)
+
+	print ('done!' if mode in ('practice', 'small', 'large')
+		   else 'please choose a proper mode -- practice, small, or large')
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>codejam</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.python</scope>
+	<!-- Optional: Description to show in the menu -->
+	<description>Google Code Jam template</description>
+</snippet>

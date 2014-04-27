@@ -1,0 +1,24 @@
+<snippet>
+    <content><![CDATA[
+def memo(f):
+    """memoization decorator, taken from Peter Norvig's Design of Computer
+    Programs course on Udacity.com"""
+    cache = {}
+    def _f(*args):
+        try:
+            return cache[args]
+        except KeyError:
+            result = cache[args] = f(*args)
+            return result
+        except TypeError:  # unhashable argument
+            return f(*args)
+    return _f
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>memoize</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+    <!-- Optional: Description to show in the menu -->
+    <description>memoization decorator</description>
+</snippet>
